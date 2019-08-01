@@ -1,5 +1,4 @@
 #include <stdlib.h>
-#include <time.h>
 #include "WatchState.h"
 #include "StartedState.h"
 #include "StoppedState.h"
@@ -11,8 +10,7 @@ typedef struct DigitalWatch DigitalWatch;
 
 struct DigitalWatch
 {
-    struct WatchState state;
-    time_t elapsedTime;
+    watchState state;
 };
 
 DigitalWatch* digWatch_create();

@@ -1,3 +1,5 @@
+#include <time.h>
+
 #include "StartedState.h"
 /* Possible transition to this states */
 #include "StoppedState.h"
@@ -15,6 +17,9 @@ void transitionToStarted(watchState* state)
     defaultImplementation(state);
     /* override default implementation only for function we will use */
     state->actualStateName = startStateName;
+
+    time(&(state->elapsedTime));
+
     state->stop = stopWatch; //next possible transition
     /* other possible transition goes here */
 }

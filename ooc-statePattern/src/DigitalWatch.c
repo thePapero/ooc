@@ -14,7 +14,6 @@ DigitalWatch* digWatch_create()
 void digWatch_constructor(DigitalWatch* me)
 {
     transitionToStopped(&(me->state)); //set the initial state
-    time(&(me->elapsedTime));
 }
 
 void digWatch_destroy(DigitalWatch* me)
@@ -24,19 +23,15 @@ void digWatch_destroy(DigitalWatch* me)
 
 void startWatch(DigitalWatch* me)
 {
-    time(&(me->elapsedTime));
     me->state.start(&(me->state));
 }
 
 void stopWatch(DigitalWatch* me)
 {
-    time_t startTime = me->elapsedTime;
-    time(&(me->elapsedTime));
-    me->elapsedTime = me->elapsedTime - startTime;
     me->state.stop(&(me->state));
 }
 
 void printElapsedTime(DigitalWatch* me)
 {
-    printf("Elapsed time: %d seconds\n",(int)me->elapsedTime);
+    printf("Elapsed time: %d seconds\n",(int)me->state.elapsedTime);
 }
